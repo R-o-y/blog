@@ -13,7 +13,7 @@ class Post(models.Model):
 
     @property
     def content_path(self):
-        return "./media/" + str(self.pk) + "/index.htm"
+        return os.path.join(settings.MEDIA_ROOT, str(self.pk), "index.htm")
 
     def __unicode__(self):
         return self.title
