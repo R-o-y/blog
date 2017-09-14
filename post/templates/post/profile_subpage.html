@@ -1,0 +1,55 @@
+{% load static %}
+<script src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
+<style>
+#profile i {
+	color: black;
+	padding: 38px 18px;
+}
+#profile a {
+	text-decoration: none;
+}
+</style>
+{% if nav_and_sidebar_animated %}
+<div id="profile" style="text-align: center;" class="animated fadeInRight">
+{% else %}
+<div id="profile" style="text-align: center;">
+{% endif %}
+	<i id="wechat_logo" style="cursor: pointer;" class="fa fa-2x fa-weixin" aria-hidden="true"></i>
+	<i id="qq_logo" style="cursor: pointer;" class="fa fa-2x fa-qq" aria-hidden="true"></i>
+	<a href="mailto:royl8@qq.com">
+		<i class="fa fa-2x fa-envelope" aria-hidden="true"></i>
+	</a>
+	<a href="https://www.facebook.com/profile.php?id=100007532838977">
+		<i class="fa fa-2x fa-facebook" aria-hidden="true"></i>
+	</a>
+</div>	
+<script>
+	$(document).ready(function() {
+		$("#wechat_logo").click(function() {
+			layer.open({
+				type: 1,
+				title: false,
+				closeBtn: 0, //不显示关闭按钮
+				anim: 2,
+				shadeClose: true, //开启遮罩关闭
+				content: $('#wechat_QR'), //捕获的元素
+			});
+		})
+		$("#qq_logo").click(function() {
+			layer.open({
+				type: 1,
+				title: false,
+				closeBtn: 0, //不显示关闭按钮 
+				anim: 2,
+				shadeClose: true, //开启遮罩关闭
+				content: $('#qq_QR'), //捕获的元素
+			});
+		})
+	});
+</script>
+
+<img id="wechat_QR" style="display: none; width: 280px;" src="{% static "wechat_QR_code.jpg" %}">
+<div id="qq_QR" style="display: none; text-align: center;">
+	<h3><a href="http://user.qzone.qq.com/845426589/main">link to qzone</a></h3>
+	<img style="width: 280px;" src="{% static "qq_QR_code.jpg" %}">
+</div>
