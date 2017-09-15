@@ -55,6 +55,8 @@ def post_zip_handler(post, zip_uploaded):
                                     '/media/' + str(post.pk) + "/" + file_name + ".file")
                 line = line.replace(file_name + ".fld",
                                     '/media/' + str(post.pk) + "/" + file_name + ".fld")
+                # restrict style of the anchor tag only within the post content part
+                # provent the style to influence other parts of the page
                 line = line.replace("a:visited", "#content_from_file a:visited").replace("a:link", "#content_from_file a:link")
                 index.write(line)
             original_index.close()
