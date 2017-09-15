@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.conf import settings
-from models import Post, Tag
-from services import extract_uploaded_zip_file_into_post_folder, \
-    remove_old_version_post_folder_on_disk_if_exists
 import os
+
+from django.conf import settings
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from models import Post, Tag
+from services import (extract_uploaded_zip_file_into_post_folder,
+                      remove_old_version_post_folder_on_disk_if_exists)
 
 
 def display_post_index(request):
@@ -50,7 +51,12 @@ def post_zip_handler(post, zip_uploaded):
             index = open(os.path.join(post_folder_path, "index.htm"), 'wb+')
             original_index = open(os.path.join(post_folder_path, file), 'r')
             for line in original_index:
-                index.write(line.replace(file_name + ".file", '/media/' + str(post.pk) + "/" + file_name + ".file").replace("a:visited", "#content_from_file a:visited").replace("a:link", "#content_from_file a:link"))
+                line = line.replace(file_name + ".file",
+                                    '/media/' + str(post.pk) + "/" + file_name + ".file")
+                line = line.replace(file_name + ".fld",
+                                    '/media/' + str(post.pk) + "/" + file_name + ".fld")
+                line = line.replace("a:visited", "#content_from_file a:visited").replace("a:link", "#content_from_file a:link")
+                index.write(line)
             original_index.close()
             index.close()
 
@@ -60,7 +66,8 @@ def upload_post(request):
         return HttpResponse()
     post = Post(title=request.POST["title"])
     post.save()
-    post_zip_handler(post, request.FILES["zip_uploaded"])  # request.FILES["zip_uploaded"] is an UploadedFile object
+    # request.FILES["zip_uploaded"] is an UploadedFile object
+    post_zip_handler(post, request.FILES["zip_uploaded"])
     return redirect("/post/?post_id=" + str(post.pk))
 
 
