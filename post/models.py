@@ -1,9 +1,11 @@
 from __future__ import unicode_literals
-from django.db import models
-from django.conf import settings
-from django.dispatch import receiver
+
 import os
 import shutil
+
+from django.conf import settings
+from django.db import models
+from django.dispatch import receiver
 
 
 class Post(models.Model):
@@ -17,6 +19,10 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    # require to generate sitemap
+    def get_absolute_url(self):
+        return '/post/?post_id=' + str(self.pk)
 
 
 @receiver(models.signals.post_delete, sender=Post)
