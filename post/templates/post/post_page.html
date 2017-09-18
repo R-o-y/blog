@@ -55,10 +55,11 @@
                 {% for tag in post.tags.all %}<a href="/post/index?tag_id={{ tag.pk }}">{{ tag.name }}</a>, {% endfor %}
                 <hr />
                 <!--cannot use bootstrap if in this way-->
-                <div id="content_from_file" class="animated zoomIn">
+                <div id="content_from_file">
                     <!-- <iframe width="100%" border="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="no" allowtransparency="yes" src="{{ post.pk}}/raw"></iframe> -->
-                    <object data="{{ post.pk}}/raw" width="100%" height="100"></object>
+                    <object style="visibility: hidden" data="{{ post.pk}}/raw" width="100%" height="100"></object>
                 </div>
+                <div id="content_for_seo" style="display: none"></div>
             </div>
         </div>
         <div class="col-md-3">
@@ -121,6 +122,13 @@
     $("object").load(function () {
         var mainheight = $($(this)[0].contentDocument).height() + 18;
         $(this).height(mainheight);
+        $(this).css("visibility", "visible");
+        $("#content_for_seo").html($(this)[0].contentDocument.body.textContent)
     });
+    // $("iframe").load(function () {
+    //     var mainheight = $($(this)[0].contentWindow.document).height() + 18;
+    //     $(this).height(mainheight);
+    //     $("#content_for_seo").html($(this)[0].contentWindow.document.body.textContent)
+    // });
 </script>
 </html>
