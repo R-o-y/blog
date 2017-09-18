@@ -37,17 +37,7 @@
 
 <div class="container">    
     <div class="row" style="margin-top: 28px;">
-        <div class="col-xs-1" style="text-align: center; position: fixed; cursor: pointer; bottom: 66px;">
-            <i id="move_to_comment_btn" class="fa fa-3x fa-comments" aria-hidden="true"></i>
-            <script>
-                $(document).ready(function() {
-                    $("#move_to_comment_btn").on("click", function() {
-                        $("html,body").animate({scrollTop: $("#comment_row").offset().top}, 380);
-                    });
-                });
-            </script>
-        </div>
-        <div class="col-xs-10 col-md-7 col-xs-offset-1">
+        <div class="col-xs-10 col-md-offset-1 col-md-7">
             <div id="post_content">
                 <h1 id="post_title">{{ post.title }}</h1>
                 <i class="fa fa-calendar-o" aria-hidden="true"></i>
@@ -63,16 +53,32 @@
                 <div id="content_for_seo" style="display: none"></div>
             </div>
         </div>
-        <div class="col-md-3">
+        
+        <div class="col-xs-10 col-md-3">
             {% include "post/profile_subpage.html" %}
             {% include "post/tag_list_subpage.html" %}
-            {% if request.user.is_staff %}
-                <div style="text-align: center; margin-top: 38px">
-                    <i id="edit_btn" class="fa fa-4x fa-pencil-square-o" aria-hidden="true" style="cursor: pointer; margin: auto;"></i>
-                </div>
-            {% endif %}
         </div>
-    </div><!--/row-->
+
+        <div style="position: fixed; cursor: pointer; bottom: 6%; right: 3.8%; text-align: center">
+            {% if request.user.is_staff %}
+                <i id="edit_btn" class="fa fa-2x fa-pencil-square" aria-hidden="true" style="cursor: pointer; margin: auto;"></i>
+            {% endif %}
+            <br><br>
+            <i id="move_to_top_btn" class="fa fa-2x fa fa-arrow-circle-up" aria-hidden="true"></i>
+            <br><br>
+            <i id="move_to_comment_btn" class="fa fa-2x fa-comments" aria-hidden="true"></i>
+            <script>
+                $(document).ready(function() {
+                    $("#move_to_top_btn").on("click", function() {
+                        $("html,body").animate({scrollTop: 0}, 380);
+                    });
+                    $("#move_to_comment_btn").on("click", function() {
+                        $("html,body").animate({scrollTop: $("#comment_row").offset().top}, 380);
+                    });
+                });
+            </script>
+        </div>
+    </div>  <!--/row-->
     
     {% include "post/disqus_subpage.html" %}
 </div>
