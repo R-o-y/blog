@@ -56,15 +56,9 @@
                 <hr />
                 <!--cannot use bootstrap if in this way-->
                 <div id="content_from_file" class="animated zoomIn">
-                    {% include post.content_path %} 
+                    <!-- <iframe width="100%" border="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="no" allowtransparency="yes" src="{{ post.pk}}/raw"></iframe> -->
+                    <object data="{{ post.pk}}/raw" width="100%" height="100"></object>
                 </div>
-                <script>
-                    $(document).ready(function() {
-                        $("#content_from_file img").css("vertical-align", "baseline");
-                    });
-                </script>
-                <!--<iframe src="/media/test.htm" width="100%" height=100%" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>-->
-                <!--frameborder="no"  彻底无边框，传说iframe无法被搜索引擎爬虫抓取-->
             </div>
         </div>
         <div class="col-md-3">
@@ -124,26 +118,9 @@
 			});
         });
     });
-    // $("iframe").load(function () {
-    //     var mainheight = $(this).contents().find("body").height() + 18;
-    //     $(this).height(mainheiht);
-    // });
-    // $(document).ready(function() {
-    //     $("[src], [href]").each(function() {
-    //         $this = $(this);
-    //         if ($this[0].hasAttribute("src")) {
-    //             var origSrc = $this.attr("src");
-    //             var newSrc = origSrc.replace(/(.+)\.files/, "/media/" + {{ post.id }} + "/$1.files");
-    //             console.log(newSrc)
-    //             $this.attr("src", newSrc);
-    //         }
-    //         else if ($this[0].hasAttribute("href")) {
-    //             var origSrc = $this.attr("href");
-    //             var newSrc = origSrc.replace(/(.+)\.files/, "/media/" + {{ post.id }} + "/$1.files");
-    //             console.log(newSrc)
-    //             $this.attr("href", newSrc);
-    //         }
-    //     })
-    // });
+    $("object").load(function () {
+        var mainheight = $($(this)[0].contentDocument).height() + 18;
+        $(this).height(mainheight);
+    });
 </script>
 </html>

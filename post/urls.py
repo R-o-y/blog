@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^search', views.search_post),
     url(r'^handle_upload', views.upload_post),
     url(r'^handle_update', views.update_post),
+    url(r'^(?P<pk>\d+)/raw', views.display_raw),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
 ]
