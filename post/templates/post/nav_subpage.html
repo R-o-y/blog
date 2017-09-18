@@ -64,54 +64,57 @@ nav ul a {
     margin-bottom: 19px;
 }
 </style>
-{% if nav_and_sidebar_animated %}
-<nav class="row navbar-inverse animated fadeInDown" role="navigation">
-{% else %}
-<nav class="row navbar-inverse" role="navigation">
-{% endif %}
-    <div class="col-xs-offset-1 col-xs-10">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/post/index">home/blog</a>
+
+<div class="container-fluid">
+    {% if nav_and_sidebar_animated %}
+    <nav class="row navbar-inverse animated fadeInDown" role="navigation">
+    {% else %}
+    <nav class="row navbar-inverse" role="navigation">
+    {% endif %}
+        <div class="col-xs-offset-1 col-xs-10">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/post/index">home/blog</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://variorum.pythonanywhere.com">Variorum</a></li>
+                    {% if request.user.is_staff %}
+                    <li><a href="/post/upload">upload post</a></li>
+                    <li><a href="/admin">admin</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/" id="search_btn">Search for post&nbsp&nbsp<i class="fa fa-search" aria-hidden="true"></i></a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
-            <ul class="nav navbar-nav">
-                <li><a href="http://variorum.pythonanywhere.com">Variorum</a></li>
-                {% if request.user.is_staff %}
-                <li><a href="/post/upload">upload post</a></li>
-                <li><a href="/admin">admin</a></li>
-                {% endif %}
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/" id="search_btn">Search for post&nbsp&nbsp<i class="fa fa-search" aria-hidden="true"></i></a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
+    </nav>
+
+
+    <div id="search">
+        <form method="get" action="/post/search">
+            <input type="search" name="search_key" placeholder="type keywords here" autocomplete="off"/>
+            <button type="submit" class="btn btn-primary" style="position: absolute; top: 50%; left: 50%; margin-top: 61px; margin-left: -45px;">Search</button>
+        </form>
     </div>
-</nav>
-
-
-<div id="search">
-    <form method="get" action="/post/search">
-        <input type="search" name="search_key" placeholder="type keywords here" autocomplete="off"/>
-        <button type="submit" class="btn btn-primary" style="position: absolute; top: 50%; left: 50%; margin-top: 61px; margin-left: -45px;">Search</button>
-    </form>
-</div>
-<script>
-    $(function () {
-        $('#search_btn').on('click', function(event) {
-            event.preventDefault();
-            $('#search').addClass('open');
-            $('#search > form > input[type="search"]').focus();
+    <script>
+        $(function () {
+            $('#search_btn').on('click', function(event) {
+                event.preventDefault();
+                $('#search').addClass('open');
+                $('#search > form > input[type="search"]').focus();
+            });
+            $('#search, #search button.close').on('click keyup', function(event) {
+                if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+                    $(this).removeClass('open');
+                }
+            });   
         });
-        $('#search, #search button.close').on('click keyup', function(event) {
-            if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
-                $(this).removeClass('open');
-            }
-        });   
-    });
-</script>
+    </script>
+</div>
