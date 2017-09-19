@@ -3,9 +3,11 @@ from __future__ import unicode_literals
 import os
 import shutil
 
+from bs4 import BeautifulSoup
 from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
+from services import get_raw_text
 
 
 class Post(models.Model):
@@ -17,6 +19,14 @@ class Post(models.Model):
     def content_path(self):
         return os.path.join(settings.MEDIA_ROOT, str(self.pk), "index.htm")
 
+    @property
+    def text(self):
+        return get_raw_text(self.content_path)
+
+    @property
+    def summary_text(self):
+        return self.text[:88] + " ..."
+    
     def __unicode__(self):
         return self.title
 
