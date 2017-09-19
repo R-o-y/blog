@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 import os
 import shutil
 
-from bs4 import BeautifulSoup
 from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
