@@ -30,7 +30,7 @@ def remove_old_version_post_folder_on_disk_if_exists(post_folder_path):
 
 def get_raw_text(html_file_path):
     html = open(html_file_path, 'r')
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html, "html.parser")
 
     # kill all script and style elements
     for script in soup(["script", "style"]):
