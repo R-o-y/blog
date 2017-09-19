@@ -79,11 +79,11 @@ nav ul a {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/post/index">home/blog</a>
+                <a class="navbar-brand" href="/post/index">~/posts</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
                 <ul class="nav navbar-nav">
-                    <li><a href="http://variorum.pythonanywhere.com">Variorum</a></li>
+                    <!-- <li><a href="">Variora</a></li> -->
                     {% if request.user.is_staff %}
                     <li><a href="/post/upload">upload post</a></li>
                     <li><a href="/admin">admin</a></li>
@@ -100,7 +100,6 @@ nav ul a {
     <div id="search">
         <form method="get" action="/post/search">
             <input type="search" name="search_key" placeholder="type keywords here" autocomplete="off"/>
-            <button type="submit" class="btn btn-primary" style="position: absolute; top: 50%; left: 50%; margin-top: 61px; margin-left: -45px;">Search</button>
         </form>
     </div>
     <script>
