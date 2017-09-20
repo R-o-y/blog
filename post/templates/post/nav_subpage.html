@@ -65,8 +65,9 @@ nav ul a {
 }
 </style>
 
+{% if nav_and_sidebar_animated %}
+
 <div class="container-fluid">
-    {% if nav_and_sidebar_animated %}
     <nav class="row navbar-inverse animated fadeInDown" role="navigation">
     {% else %}
     <nav class="row navbar-inverse" role="navigation">
