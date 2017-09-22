@@ -6,7 +6,7 @@ import shutil
 from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
-from services import get_raw_text
+from services import (get_raw_text, get_first_image_url)
 
 
 class Post(models.Model):
@@ -25,7 +25,15 @@ class Post(models.Model):
     @property
     def summary_text(self):
         return self.text[:88] + " ..."
-    
+
+    @property
+    def first_image_url(self):
+        return get_first_image_url(self.content_path)
+
+    @property
+    def contain_image(self):
+        return self.first_image_url is not None
+
     def __unicode__(self):
         return self.title
 

@@ -47,3 +47,14 @@ def get_raw_text(html_file_path):
     text = '\n'.join(chunk for chunk in chunks if chunk)
 
     return text
+
+
+def get_first_image_url(html_file_path):
+    html = open(html_file_path, 'r')
+    soup = BeautifulSoup(html, "html.parser")
+
+    image = soup.find("img")
+    if image is None:
+        return None
+    else:
+        return image['src']
