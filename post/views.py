@@ -18,7 +18,7 @@ def display_post_index(request):
         }
     else:
         context = {
-            "posts": Post.objects.all(),
+            "posts": Post.objects.all().order_by('-post_time'),
             "tags": Tag.objects.all(),
             "nav_and_sidebar_animated": True
         }
