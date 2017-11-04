@@ -14,12 +14,12 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-    <!-- Latest compiled and minified JavaScript -->
+    <!-- Latest compiled and minifiedi JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <style>
         body {
-            background: #eee;
+            background: #f8f8f8;
         }
         .panel:hover {
             box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
@@ -36,9 +36,9 @@
             <h4 class="animated bounceInDown">results for "{{ search_key}}"</h4><hr style="background-color: #888; border-color: #888">
             {% endif %}
             {% for post in posts %}
-            <div class="panel panel-default animated fadeInLeft">
+            <div class="panel animated fadeInLeft post_choice" style="cursor: pointer">
                 <div class="panel-heading">
-                    <span class="post_choice" style="cursor: pointer; font-size: 16px">{{ post.title }}</span>
+                    <span style="font-size: 16px">{{ post.title }}</span>
                     <form method="get" action="/post">
                         <input style="display: none" name="post_id" value="{{ post.id }}">
                     </form>
@@ -51,21 +51,11 @@
                     <br><br><div style="color: #757575; font-weight: 300">{{ post.summary_text }}</div>
                 </div>
             </div>
-            <!--<div>
-                <h4 class="post_choice" style="cursor: pointer">{{ post.title }}</h4>
-                <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                {{ post.post_time }}<br />
-                <i class="fa fa-tags" aria-hidden="true"></i>
-                {% for tag in post.tags.all %}<a href="/post/index?tag_id={{ tag.pk }}">{{ tag.name }}</a>, {% endfor %}
-                <form method="get" action="/post" style="border-bottom: white 3px solid;">
-                    <input style="display: none" name="post_id" value="{{ post.id }}">
-                </form>
-            </div>-->
             {% endfor %}
             <script>
                 $(document).ready(function() {
                     $(".post_choice").on("click", function() {
-                        $(this).parent("div").find("form").submit();
+                        $(this).find("form").submit();
                     });
                 });
             </script>
