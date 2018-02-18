@@ -19,6 +19,7 @@
 	<a href="mailto:royl8@qq.com">
 		<i class="fa fa-2x fa-envelope" style="color: #2980B9" aria-hidden="true"></i>
 	</a>
+	<i id="dashang_logo" style="cursor: pointer; color: #EB974E" class="fa fa-2x fa-usd" aria-hidden="true"></i>
 	<!-- <a href="https://www.facebook.com/profile.php?id=100007532838977">
 		<i class="fa fa-2x fa-facebook" aria-hidden="true"></i>
 	</a> -->
@@ -35,6 +36,17 @@
 				content: $('#wechat_QR'), //捕获的元素
 			});
 		})
+        $("#dashang_logo").click(function() {
+			layer.open({
+				type: 1,
+				title: false,
+				closeBtn: 0, //不显示关闭按钮
+				anim: 2,
+				shadeClose: true, //开启遮罩关闭
+                area: '380px',
+				content: $('#wechat_dashang_QR'), //捕获的元素
+			});
+		})
 		$("#qq_logo").click(function() {
 			layer.open({
 				type: 1,
@@ -49,6 +61,7 @@
 </script>
 
 <img id="wechat_QR" style="display: none; width: 280px;" src="{% static "wechat_QR_code.jpg" %}">
+<img id="wechat_dashang_QR" style="display: none; width: 380px;" src="{% static "wechat_dashang_QR_code.png" %}">
 <div id="qq_QR" style="display: none; text-align: center;">
 	<h3><a href="http://user.qzone.qq.com/845426589/main">link to qzone</a></h3>
 	<img style="width: 280px;" src="{% static "qq_QR_code.jpg" %}">
