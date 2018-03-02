@@ -39,7 +39,7 @@
                 <h2 class="form-signin-heading">upload post</h2>
                 {% csrf_token %}
                 <input class="form-control" tyle="text" name="title" required="required" placeholder="post title">
-                <input class="form-control" type="file" name="zip_uploaded" accept="application/zip" required="required">
+                <input class="form-control" type="file" name="file_uploaded" accept="application/zip, text/html" required="required">
                 <button class="btn btn-lg btn-success btn-block" type="submit">submit</button>
             </form>
         </div>

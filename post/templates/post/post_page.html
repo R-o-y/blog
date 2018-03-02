@@ -83,7 +83,7 @@
 	{% csrf_token %}
 	<input name="post_id" value="{{ post.id }}" style="display: none">
 	<input class="form-control" tyle="text" name="title" required="required" val="{{ post.title }}">
-	<input class="form-control" type="file" name="zip_uploaded" accept="application/zip">
+	<input class="form-control" type="file" name="file_uploaded" accept="application/zip, text/html">
 	<button class="btn btn-lg btn-success btn-block" type="submit">submit</button>
 </form>
 </body>
