@@ -6,5 +6,4 @@ python manage.py makemigrations
 python manage.py migrate
 sudo env/bin/python manage.py collectstatic --noinput
 
-sudo service memcached restart
-sudo service apache2 restart
+touch royl8/wsgi.py
